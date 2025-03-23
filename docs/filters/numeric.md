@@ -14,8 +14,8 @@ Currently, Unfold implements numeric filters inside `unfold.contrib.filters` app
 from django.contrib import admin
 from django.contrib.auth.models import User
 
-from unfold_rtl.admin import ModelAdmin
-from unfold_rtl.contrib.filters.admin import (
+from unfold.admin import ModelAdmin
+from unfold.contrib.filters.admin import (
     RangeNumericListFilter,
     RangeNumericFilter,
     SingleNumericFilter,

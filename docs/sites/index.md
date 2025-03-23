@@ -12,7 +12,7 @@ In order to create a custom admin site, Unfold provides the `unfold.sites.Unfold
 # sites.py
 
 from django.contrib import admin
-from unfold_rtl.sites import UnfoldAdminSite
+from unfold.sites import UnfoldAdminSite
 
 class CustomAdminSite(UnfoldAdminSite):
     pass
@@ -38,7 +38,7 @@ urlpatterns = [
 # models.py
 
 from django.contrib.auth.models import User
-from unfold_rtl.admin import ModelAdmin
+from unfold.admin import ModelAdmin
 
 
 @admin.register(User, site=custom_admin_site)

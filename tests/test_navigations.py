@@ -1,8 +1,8 @@
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
-from unfold_rtl.settings import CONFIG_DEFAULTS
-from unfold_rtl.sites import UnfoldAdminSite
+from unfold.settings import CONFIG_DEFAULTS
+from unfold.sites import UnfoldAdminSite
 
 
 def deny_permission(request):

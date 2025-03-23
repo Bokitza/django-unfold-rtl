@@ -10,7 +10,7 @@ By default, the title available for each inline row is coming from the `__str__`
 
 ```python
 from django.contrib.auth.models import User
-from unfold_rtl.admin import TabularInline
+from unfold.admin import TabularInline
 
 
 class User(models.Model):
@@ -32,7 +32,7 @@ By applying `hide_title` attribute set to `True`, it is possible to hide the tit
 # admin.py
 
 from django.contrib.auth.models import User
-from unfold_rtl.admin import TabularInline
+from unfold.admin import TabularInline
 
 
 class MyInline(TabularInline):

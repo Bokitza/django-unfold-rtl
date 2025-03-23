@@ -52,7 +52,7 @@ After installation, it is required that admin classes are going to inherit from 
 # admin.py
 
 from django.contrib import admin
-from unfold_rtl.admin import ModelAdmin
+from unfold.admin import ModelAdmin
 
 
 @admin.register(MyModel)

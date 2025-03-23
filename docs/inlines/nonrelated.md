@@ -10,8 +10,8 @@ To display inlines which are not related (no foreign key pointing at the main mo
 
 ```python
 from django.contrib.auth.models import User
-from unfold_rtl.admin import ModelAdmin
-from unfold_rtl.contrib.inlines.admin import NonrelatedTabularInline
+from unfold.admin import ModelAdmin
+from unfold.contrib.inlines.admin import NonrelatedTabularInline
 from .models import OtherModel
 
 class OtherNonrelatedInline(NonrelatedTabularInline):  # NonrelatedStackedInline is available as well

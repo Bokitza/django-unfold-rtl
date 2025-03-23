@@ -12,9 +12,9 @@ description: Integration with django-import-export.
 ```python
 # admin.py
 
-from unfold_rtl.admin import ModelAdmin
+from unfold.admin import ModelAdmin
 from import_export.admin import ImportExportModelAdmin
-from unfold_rtl.contrib.import_export.forms import ExportForm, ImportForm, SelectableFieldsExportForm
+from unfold.contrib.import_export.forms import ExportForm, ImportForm, SelectableFieldsExportForm
 
 class ExampleAdmin(ModelAdmin, ImportExportModelAdmin):
     import_form_class = ImportForm
@@ -29,8 +29,8 @@ When implementing `import_export.admin.ExportActionModelAdmin` class in admin pa
 ```python
 admin.py
 
-from unfold_rtl.admin import ModelAdmin
-from unfold_rtl.contrib.import_export.admin import ExportActionModelAdmin
+from unfold.admin import ModelAdmin
+from unfold.contrib.import_export.admin import ExportActionModelAdmin
 
 class ExampleAdmin(ModelAdmin, ExportActionModelAdmin):
     pass

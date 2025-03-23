@@ -23,8 +23,8 @@ Below is simple example replacing all `TextField` fields with `WysiwygWidget` in
 # admin.py
 
 from django.db import models
-from unfold_rtl.admin import ModelAdmin
-from unfold_rtl.contrib.forms.widgets import WysiwygWidget
+from unfold.admin import ModelAdmin
+from unfold.contrib.forms.widgets import WysiwygWidget
 
 
 @admin.register(MyModel)

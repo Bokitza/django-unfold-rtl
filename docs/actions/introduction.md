@@ -15,8 +15,8 @@ from django.auth.models import User
 from django.contrib import admin
 from django.db.models import QuerySet
 from django.http import HttpRequest
-from unfold_rtl.admin import ModelAdmin
-from unfold_rtl.decorators import action
+from unfold.admin import ModelAdmin
+from unfold.decorators import action
 
 @admin.register(User)
 class UserAdmin(ModelAdmin):
@@ -37,7 +37,7 @@ Unfold supports custom icons for actions. Icons are supported for all actions ty
 from django.db.models import QuerySet
 from django.http import HttpRequest
 
-from unfold_rtl.decorators import action
+from unfold.decorators import action
 
 @action(description="Custom action", icon="person")
 def custom_action(self, request: HttpRequest, queryset: QuerySet):
@@ -54,9 +54,9 @@ In Unfold it is possible to change a color of the action. Unfold supports differ
 from django.db.models import QuerySet
 from django.http import HttpRequest
 
-from unfold_rtl.decorators import action
-# Import ActionVariant enum from unfold_rtl to set action variant
-from unfold_rtl.enums import ActionVariant
+from unfold.decorators import action
+# Import ActionVariant enum from unfold to set action variant
+from unfold.enums import ActionVariant
 
 # class ActionVariant(Enum):
 #     DEFAULT = "default"

@@ -15,7 +15,7 @@ from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.contrib.admin.filters import ChoicesFieldListFilter
 
-from unfold_rtl.admin import ModelAdmin
+from unfold.admin import ModelAdmin
 
 
 User = get_user_model()

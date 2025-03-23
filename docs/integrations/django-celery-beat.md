@@ -6,14 +6,14 @@ description: Integration with django-celery-beat.
 
 # django-celery-beat
 
-In general, django-celery-beat does not have any components that require special styling. The default changelist templates are not inheriting from unfold_rtl's `ModelAdmin` but they are using default `ModelAdmin` coming from `django.contrib.admin` which is causing some design discrepancies in the changelist.
+In general, django-celery-beat does not have any components that require special styling. The default changelist templates are not inheriting from unfold's `ModelAdmin` but they are using default `ModelAdmin` coming from `django.contrib.admin` which is causing some design discrepancies in the changelist.
 
 In the source code below you can find a short code snippet to unregister all `django-celery-beat` admin classes and register them with the proper parent `ModelAdmin` class.
 
 ```python
 # admin.py
 from django.contrib import admin
-from unfold_rtl.admin import ModelAdmin
+from unfold.admin import ModelAdmin
 
 from django_celery_beat.models import (
     ClockedSchedule,

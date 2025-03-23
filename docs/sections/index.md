@@ -11,8 +11,8 @@ Unfold implements special functionality for handling expandable rows in changeli
 The `list_sections` attribute consists of Python classes inheriting from `TableSection` or `TemplateSection` defined in `unfold.sections`. These classes are responsible for rendering the content in the expandable area.
 
 ```python
-from unfold_rtl.admin import ModelAdmin
-from unfold_rtl.sections import TableSection, TemplateSection
+from unfold.admin import ModelAdmin
+from unfold.sections import TableSection, TemplateSection
 
 from .models import SomeModel
 
@@ -55,7 +55,7 @@ The optimal solution is using [`prefetch_related`](https://docs.djangoproject.co
 2. Override `get_queryset` and use `prefetch_related` on all related rows until you don't have any duplicated SQL queries in django-debug-toolbar output
 
 ```python
-from unfold_rtl.admin import ModelAdmin
+from unfold.admin import ModelAdmin
 
 from .models import SomeModel
 
@@ -83,7 +83,7 @@ class SomeAdmin(ModelAdmin):
 Unfold supports multiple related tables in expandable rows. Specify a section class for each related field and put them into `list_sections`. For each class, you can add a `verbose_name` to display a custom title right above the table to distinguish between different related fields.
 
 ```python
-from unfold_rtl.admin import ModelAdmin
+from unfold.admin import ModelAdmin
 
 from .models import SomeModel
 

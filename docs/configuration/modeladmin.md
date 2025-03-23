@@ -15,8 +15,8 @@ from django import models
 from django.contrib import admin
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
-from unfold_rtl.admin import ModelAdmin
-from unfold_rtl.contrib.forms.widgets import ArrayWidget, WysiwygWidget
+from unfold.admin import ModelAdmin
+from unfold.contrib.forms.widgets import ArrayWidget, WysiwygWidget
 
 
 @admin.register(MyModel)

@@ -14,7 +14,7 @@ The dropdown menu is defined by providing a `dict` with `title` and `items` keys
 # admin.py
 
 from django.contrib.auth.models import User
-from unfold_rtl.admin import ModelAdmin
+from unfold.admin import ModelAdmin
 
 
 @register(User)

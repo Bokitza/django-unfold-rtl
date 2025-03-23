@@ -36,7 +36,7 @@ Below you can see an example of a component class that prepares the data for the
 ```python
 # admin.py
 
-from unfold_rtl.components import BaseComponent
+from unfold.components import BaseComponent
 
 class MyCohortComponent(BaseComponent):
     def get_context_data(self, **kwargs):

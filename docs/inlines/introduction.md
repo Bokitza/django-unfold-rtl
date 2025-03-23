@@ -6,14 +6,14 @@ description: Custom inline classes for Unfold admin.
 
 # Inlines
 
-Unfold inlines are derived from Django inlines, and they are used to add extra styling and configuration options. Native inline classes `StackedInline` and `TabularInline` are going work but the styling will not match default Unfold design thus it is recommended to use inlines derived from unfold_rtl.
+Unfold inlines are derived from Django inlines, and they are used to add extra styling and configuration options. Native inline classes `StackedInline` and `TabularInline` are going work but the styling will not match default Unfold design thus it is recommended to use inlines derived from unfold.
 
 ```python
 # admin.py
 
 from django.contrib import admin
 from django.contrib.auth.models import User
-from unfold_rtl.admin import StackedInline, TabularInline
+from unfold.admin import StackedInline, TabularInline
 
 
 class MyStackedInline(StackedInline):

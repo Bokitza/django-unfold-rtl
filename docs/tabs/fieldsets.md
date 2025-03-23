@@ -13,7 +13,7 @@ When the change form contains a lot of fieldsets, sometimes it is better to grou
 
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
-from unfold_rtl.admin import ModelAdmin
+from unfold.admin import ModelAdmin
 
 from .models import MyModel
 

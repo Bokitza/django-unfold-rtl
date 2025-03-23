@@ -15,8 +15,8 @@ from django.contrib.admin import register
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 from django.http import HttpRequest
-from unfold_rtl.admin import ModelAdmin
-from unfold_rtl.decorators import action
+from unfold.admin import ModelAdmin
+from unfold.decorators import action
 
 
 @register(User)

@@ -15,7 +15,7 @@ Unfold allows you to sort inlines by adding a `ordering_field` to the inline cla
 ```python
 # admin.py
 
-from unfold_rtl.admin import TabularInline
+from unfold.admin import TabularInline
 from .models import User
 
 
