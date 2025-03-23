@@ -11,12 +11,12 @@
         <table id="user-permissions" class="border-base-200 border-spacing-none border-separate mb-6 w-full lg:border lg:rounded lg:shadow-sm lg:dark:border-base-800">
             <thead class="hidden lg:table-header-group text-font-important-light dark:text-font-important-dark">
                 <tr>
-                    <th class="align-middle font-semibold px-3 py-2 text-left">
+                    <th class="align-middle font-semibold px-3 py-2 text-right">
                         {% trans "User" %}
                     </th>
 
                     {% for perm in model_perms %}
-                        <th class="align-middle font-semibold px-3 py-2 text-left">
+                        <th class="align-middle font-semibold px-3 py-2 text-right">
                             {{ perm.name }}
                         </th>
                     {% endfor %}
@@ -30,14 +30,14 @@
             <tbody>
                 {% for user, user_perms in users_perms.items %}
                     <tr class="block border mb-3 rounded shadow-sm lg:table-row lg:border-none lg:mb-0 lg:shadow-none dark:border-base-800">
-                        <th class="align-middle flex border-t border-base-200 font-normal px-3 py-2 text-left  before:flex before:capitalize before:content-[attr(data-label)] before:items-center before:mr-auto  first:border-t-0  lg:before:hidden lg:first:border-t lg:py-3 lg:table-cell dark:border-base-800" data-label="{% trans "User" %}">
+                        <th class="align-middle flex border-t border-base-200 font-normal px-3 py-2 text-right  before:flex before:capitalize before:content-[attr(data-label)] before:items-center before:mr-auto  first:border-t-0  lg:before:hidden lg:first:border-t lg:py-3 lg:table-cell dark:border-base-800" data-label="{% trans "User" %}">
                             <span>
                                 {{ user }}
                             </span>
                         </th>
 
                         {% for perm in model_perms %}
-                            <td class="align-middle flex border-t border-base-200 font-normal px-3 py-2 text-left  before:flex before:capitalize before:content-[attr(data-label)] before:items-center before:mr-auto  first:border-t-0  lg:before:hidden lg:first:border-t lg:py-3 lg:table-cell dark:border-base-800" data-label="{{ perm.name }}">
+                            <td class="align-middle flex border-t border-base-200 font-normal px-3 py-2 text-right  before:flex before:capitalize before:content-[attr(data-label)] before:items-center before:mr-auto  first:border-t-0  lg:before:hidden lg:first:border-t lg:py-3 lg:table-cell dark:border-base-800" data-label="{{ perm.name }}">
                                 {% if perm.codename in user_perms %}
                                     {% include "unfold/helpers/boolean.html" with value=True %}
                                 {% else %}

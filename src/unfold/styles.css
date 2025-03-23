@@ -43,7 +43,7 @@
   }
 
   .scrollable-top:after {
-    @apply absolute bg-gradient-to-t from-gray-100 h-4 left-0 right-0 -top-4 dark:bg-none;
+    @apply absolute bg-gradient-to-t from-gray-100 h-4 start-0 end-0 -top-4 dark:bg-none;
     content: "";
   }
 }
@@ -118,7 +118,7 @@ table tr.selected th {
  Datetime
  *******************************************************/
 .datetimeshortcuts {
-  @apply absolute flex flex-row-reverse items-center right-0 text-0 top-px;
+  @apply absolute flex flex-row-reverse items-center end-0 text-0 top-px;
 }
 
 .datetimeshortcuts a {
@@ -165,12 +165,12 @@ table tr.selected th {
 }
 
 .timezonewarning {
-  @apply absolute block items-center right-20 top-2.5 text-base-500 truncate;
+  @apply absolute block items-center end-20 top-2.5 text-base-500 truncate;
   font-size: 0;
 }
 
 .timezonewarning:hover {
-  @apply bg-white bottom-px leading-9 left-px right-px px-3 rounded text-xs top-px dark:bg-base-900;
+  @apply bg-white bottom-px leading-9 start-px end-px px-3 rounded text-xs top-px dark:bg-base-900;
 }
 
 .timezonewarning:hover:before {
@@ -347,7 +347,7 @@ h3 span:nth-child(3) {
 .select2-container.select2-container--admin-autocomplete
   .select2-selection--single
   .select2-selection__arrow:after {
-  @apply left-0 leading-none m-0 material-symbols-outlined text-base-500 text-lg;
+  @apply start-0 leading-none m-0 material-symbols-outlined text-base-500 text-lg;
   content: "expand_more";
 }
 
@@ -378,7 +378,7 @@ h3 span:nth-child(3) {
 }
 
 .select2-container.select2-container--open .select2-dropdown {
-  @apply border-primary-600 ring ring-primary-300 pb-2 shadow-sm dark:bg-base-900 dark:border-primary-700 after:block after:bg-white after:absolute after:border-l after:border-l-primary-600 after:border-r after:border-r-primary-600 after:h-1 after:-left-px after:-right-px after:-mt-1 after:top-0 dark:after:bg-base-900 dark:after:border-l-primary-700 dark:after:border-r-primary-700 dark:ring-primary-700 dark:ring-opacity-50;
+  @apply border-primary-600 ring ring-primary-300 pb-2 shadow-sm dark:bg-base-900 dark:border-primary-700 after:block after:bg-white after:absolute after:border-l after:border-l-primary-600 after:border-r after:border-r-primary-600 after:h-1 after:-start-px after:-end-px after:-mt-1 after:top-0 dark:after:bg-base-900 dark:after:border-l-primary-700 dark:after:border-r-primary-700 dark:ring-primary-700 dark:ring-opacity-50;
 }
 
 .select2-container.select2-container--open .select2-dropdown--below {
@@ -481,7 +481,7 @@ fieldset details > summary {
 }
 
 fieldset details > summary:after {
-  @apply material-symbols-outlined absolute right-3 top-3.5;
+  @apply material-symbols-outlined absolute end-3 top-3.5;
   content: "expand_more";
 }
 
@@ -494,7 +494,7 @@ fieldset details[open] > summary:after {
  *******************************************************/
 .calendarbox,
 .clockbox {
-  @apply bg-white border border-base-200 rounded shadow-sm text-base-500 text-sm w-80 z-50 dark:bg-base-800 dark:border-base-700 !fixed !left-1/2 !top-1/2 -translate-x-1/2 -translate-y-1/2;
+  @apply bg-white border border-base-200 rounded shadow-sm text-base-500 text-sm w-80 z-50 dark:bg-base-800 dark:border-base-700 !fixed !start-1/2 !top-1/2 -translate-x-1/2 -translate-y-1/2;
 }
 
 .calendar caption {
@@ -538,7 +538,7 @@ fieldset details[open] > summary:after {
 }
 
 .calendarnav-previous {
-  @apply absolute block ml-2 mt-2 left-0 text-0 top-0;
+  @apply absolute block ml-2 mt-2 start-0 text-0 top-0;
 }
 
 .calendarnav-next:after,
@@ -555,7 +555,7 @@ fieldset details[open] > summary:after {
 }
 
 .calendarnav-next {
-  @apply absolute block mr-2 mt-2 right-0 text-0 top-0;
+  @apply absolute block mr-2 mt-2 end-0 text-0 top-0;
 }
 
 .calendarnav-next:after {
@@ -588,7 +588,7 @@ fieldset details[open] > summary:after {
  Htmx
  *******************************************************/
 .htmx-indicator.htmx-swapping:before {
-  @apply absolute bg-white bottom-0 left-0 opacity-80 transition-all right-0 top-0;
+  @apply absolute bg-white bottom-0 start-0 opacity-80 transition-all end-0 top-0;
   content: "";
 }
 
@@ -601,11 +601,11 @@ fieldset details[open] > summary:after {
  Filters
  *******************************************************/
 #changelist-filter .admin-numeric-filter-slider .noUi-handle {
-  @apply bg-white border border-base-200 cursor-pointer h-4 -right-4 rounded-full shadow-sm w-4 dark:bg-base-200 dark:border-base-200;
+  @apply bg-white border border-base-200 cursor-pointer h-4 -end-4 rounded-full shadow-sm w-4 dark:bg-base-200 dark:border-base-200;
 }
 
 #changelist-filter .admin-numeric-filter-slider .noUi-handle-upper {
-  @apply right-0;
+  @apply end-0;
 }
 
 #changelist-filter .admin-numeric-filter-slider .noUi-handle:after {

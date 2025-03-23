@@ -51,7 +51,7 @@ ROW_CLASSES = [
     "overflow-hidden",
     "px-3",
     "py-2",
-    "text-left",
+    "text-right",
     "before:flex",
     "before:capitalize",
     "before:content-[attr(data-label)]",
@@ -75,7 +75,7 @@ CHECKBOX_CLASSES = [
     "items-center",
     "px-3",
     "py-2",
-    "text-left",
+    "text-right",
     "before:block",
     "before:capitalize",
     "before:content-[attr(data-label)]",
@@ -184,9 +184,9 @@ def result_headers(cl):
             "url_primary": cl.get_query_string({ORDER_VAR: ".".join(o_list_primary)}),
             "url_remove": cl.get_query_string({ORDER_VAR: ".".join(o_list_remove)}),
             "url_toggle": cl.get_query_string({ORDER_VAR: ".".join(o_list_toggle)}),
-            "class_attrib": format_html("{}", " ".join(th_classes))
-            if th_classes
-            else "",
+            "class_attrib": (
+                format_html("{}", " ".join(th_classes)) if th_classes else ""
+            ),
         }
 
 
@@ -281,9 +281,11 @@ def items_for_result(
                     '<a href="{}" class="{}" {}>{}</a>',
                     url,
                     " ".join(LINK_CLASSES),
-                    format_html(' data-popup-opener="{}"', value)
-                    if cl.is_popup
-                    else "",
+                    (
+                        format_html(' data-popup-opener="{}"', value)
+                        if cl.is_popup
+                        else ""
+                    ),
                     result_repr,
                 )
             row_class = mark_safe(f' class="{" ".join(row_classes)}"')
