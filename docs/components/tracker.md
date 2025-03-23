@@ -37,7 +37,7 @@ Below you can see an example of a component class that prepares the data for the
 ```python
 # admin.py
 
-from unfold.components import BaseComponent
+from unfold_rtl.components import BaseComponent
 
 class MyTrackerComponent(BaseComponent):
     def get_context_data(self, **kwargs):

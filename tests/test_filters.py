@@ -2,11 +2,11 @@ import pytest
 from django.contrib.admin.templatetags.admin_list import admin_list_filter
 from django.contrib.auth import get_user_model
 
-from unfold.contrib.filters.admin.autocomplete_filters import (
+from unfold_rtl.contrib.filters.admin.autocomplete_filters import (
     AutocompleteSelectFilter,
     AutocompleteSelectMultipleFilter,
 )
-from unfold.contrib.filters.admin.text_filters import FieldTextFilter
+from unfold_rtl.contrib.filters.admin.text_filters import FieldTextFilter
 
 
 @pytest.mark.django_db

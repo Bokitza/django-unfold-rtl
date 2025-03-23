@@ -3,8 +3,8 @@ from django.template import Context, Template
 from django.test import RequestFactory, override_settings
 from django.utils.translation import gettext_lazy as _
 
-from unfold.settings import CONFIG_DEFAULTS
-from unfold.sites import UnfoldAdminSite
+from unfold_rtl.settings import CONFIG_DEFAULTS
+from unfold_rtl.sites import UnfoldAdminSite
 
 
 def tabs_callback(request):

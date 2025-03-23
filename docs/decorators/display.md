@@ -18,8 +18,8 @@ Unfold introduces its own `unfold.decorators.display` decorator. By default, it 
 from django.db.models import TextChoices
 from django.utils.translation import gettext_lazy as _
 
-from unfold.admin import ModelAdmin
-from unfold.decorators import display
+from unfold_rtl.admin import ModelAdmin
+from unfold_rtl.decorators import display
 
 
 class UserStatus(TextChoices):

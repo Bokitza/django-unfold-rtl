@@ -15,8 +15,8 @@ The difference between them is that `ChoicesDropdownFilter` will collect a list 
 
 from django.contrib import admin
 from django.contrib.auth.models import User
-from unfold.admin import ModelAdmin
-from unfold.contrib.filters.admin import (
+from unfold_rtl.admin import ModelAdmin
+from unfold_rtl.contrib.filters.admin import (
     ChoicesDropdownFilter,
     MultipleChoicesDropdownFilter,
     RelatedDropdownFilter,

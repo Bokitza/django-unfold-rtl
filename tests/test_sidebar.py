@@ -7,8 +7,8 @@ from django.test.client import RequestFactory
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 
-from unfold.settings import CONFIG_DEFAULTS
-from unfold.sites import UnfoldAdminSite
+from unfold_rtl.settings import CONFIG_DEFAULTS
+from unfold_rtl.sites import UnfoldAdminSite
 
 
 def test_sidebar_defaults():

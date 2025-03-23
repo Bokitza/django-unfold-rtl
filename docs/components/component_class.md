@@ -11,7 +11,7 @@ Each component in Unfold theme has a component class that is responsible for pre
 ```python
 # admin.py
 
-from unfold.components import BaseComponent
+from unfold_rtl.components import BaseComponent
 
 class MyComponent(BaseComponent):
     def get_context_data(self, **kwargs):

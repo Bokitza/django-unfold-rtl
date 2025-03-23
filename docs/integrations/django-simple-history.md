@@ -29,7 +29,7 @@ from django.contrib import admin
 from django.contrib.auth import get_user_model
 
 from simple_history.admin import SimpleHistoryAdmin
-from unfold.admin import ModelAdmin
+from unfold_rtl.admin import ModelAdmin
 
 User = get_user_model()
 

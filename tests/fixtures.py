@@ -7,11 +7,11 @@ from django.test import RequestFactory
 from django.urls import reverse_lazy
 from django.utils.timezone import now
 
-from unfold.admin import ModelAdmin
-from unfold.decorators import action
-from unfold.forms import AdminPasswordChangeForm, UserChangeForm, UserCreationForm
-from unfold.sections import TableSection, TemplateSection
-from unfold.sites import UnfoldAdminSite
+from unfold_rtl.admin import ModelAdmin
+from unfold_rtl.decorators import action
+from unfold_rtl.forms import AdminPasswordChangeForm, UserChangeForm, UserCreationForm
+from unfold_rtl.sections import TableSection, TemplateSection
+from unfold_rtl.sites import UnfoldAdminSite
 
 User = get_user_model()
 

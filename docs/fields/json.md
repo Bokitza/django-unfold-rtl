@@ -42,7 +42,7 @@ Again, we need to register the model in the admin.py file and make sure the new 
 # admin.py
 
 from django.contrib import admin
-from unfold.admin import ModelAdmin
+from unfold_rtl.admin import ModelAdmin
 
 
 @admin.register(CustomModel)

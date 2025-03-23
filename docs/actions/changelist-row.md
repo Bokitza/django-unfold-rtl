@@ -17,8 +17,8 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.http import HttpRequest
-from unfold.admin import ModelAdmin
-from unfold.decorators import action
+from unfold_rtl.admin import ModelAdmin
+from unfold_rtl.decorators import action
 
 
 @register(User)

@@ -2,8 +2,8 @@ from django.contrib.auth.models import AnonymousUser
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
-from unfold.settings import CONFIG_DEFAULTS
-from unfold.sites import UnfoldAdminSite
+from unfold_rtl.settings import CONFIG_DEFAULTS
+from unfold_rtl.sites import UnfoldAdminSite
 
 
 def environment_callback(request):

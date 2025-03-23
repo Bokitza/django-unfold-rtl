@@ -17,8 +17,8 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 from django.core.validators import EMPTY_VALUES
 from django.utils.translation import gettext_lazy as _
-from unfold.admin import ModelAdmin
-from unfold.contrib.filters.admin import TextFilter, FieldTextFilter
+from unfold_rtl.admin import ModelAdmin
+from unfold_rtl.contrib.filters.admin import TextFilter, FieldTextFilter
 
 class CustomTextFilter(TextFilter):
     title = _("Custom filter")

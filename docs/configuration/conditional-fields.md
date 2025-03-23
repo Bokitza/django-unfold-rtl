@@ -53,7 +53,7 @@ This approach is particularly useful for complex forms where certain information
 # admin.py
 
 from django.contrib import admin
-from unfold.admin import ModelAdmin
+from unfold_rtl.admin import ModelAdmin
 
 from .models import User
 

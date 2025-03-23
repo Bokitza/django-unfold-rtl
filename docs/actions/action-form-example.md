@@ -18,13 +18,13 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 
-from unfold.admin import ModelAdmin
-from unfold.decorators import action
-from unfold.widgets import UnfoldAdminTextInputWidget, UnfoldAdminSplitDateTimeWidget
+from unfold_rtl.admin import ModelAdmin
+from unfold_rtl.decorators import action
+from unfold_rtl.widgets import UnfoldAdminTextInputWidget, UnfoldAdminSplitDateTimeWidget
 
 
 class SomeForm(forms.Form):
-    # It is important to set a widget coming from Unfold
+    # It is important to set a widget coming from unfold_rtl
     date_start = forms.SplitDateTimeField(label=_("Start"), widget=UnfoldAdminSplitDateTimeWidget)
     date_end = forms.SplitDateTimeField(label=_("End"), widget=UnfoldAdminSplitDateTimeWidget)
     note = forms.CharField(label=_("Note"), widget=UnfoldAdminTextInputWidget)

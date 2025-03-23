@@ -14,8 +14,8 @@ By default, Unfold provides a basic view mixin which helps with creation of basi
 from django.urls import path
 from django.views.generic import TemplateView
 
-from unfold.admin import ModelAdmin
-from unfold.views import UnfoldModelAdminViewMixin
+from unfold_rtl.admin import ModelAdmin
+from unfold_rtl.views import UnfoldModelAdminViewMixin
 
 from .models import MyModel
 

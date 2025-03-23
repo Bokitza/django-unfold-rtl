@@ -1,6 +1,6 @@
 import pytest
 
-from unfold.widgets import (
+from unfold_rtl.widgets import (
     UnfoldAdminBigIntegerFieldWidget,
     UnfoldAdminColorInputWidget,
     UnfoldAdminDateWidget,

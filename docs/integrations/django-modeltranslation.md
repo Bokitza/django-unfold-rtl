@@ -12,7 +12,7 @@ By default, Unfold supports django-modeltranslation and `TabbedTranslationAdmin`
 from django.contrib import admin
 
 from modeltranslation.admin import TabbedTranslationAdmin
-from unfold.admin import ModelAdmin
+from unfold_rtl.admin import ModelAdmin
 
 from .models import MyModel
 

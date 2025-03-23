@@ -27,8 +27,8 @@ from django.contrib.postgres.fields import ArrayField
 from django.db.models import TextChoices
 from django.utils.translation import gettext_lazy as _
 
-from unfold.admin import ModelAdmin
-from unfold.contrib.forms.widgets import ArrayWidget
+from unfold_rtl.admin import ModelAdmin
+from unfold_rtl.contrib.forms.widgets import ArrayWidget
 
 
 class SomeChoices(TextChoices):

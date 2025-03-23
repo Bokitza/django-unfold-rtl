@@ -12,7 +12,7 @@ Inlines can be grouped into tab navigation by specifying `tab` attribute in the 
 # admin.py
 
 from django.contrib.auth.models import User
-from unfold.admin import StackedInline, TabularInline
+from unfold_rtl.admin import StackedInline, TabularInline
 
 
 class MyTabularInline(TabularInline):

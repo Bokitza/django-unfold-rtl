@@ -18,8 +18,8 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.admin import GroupAdmin as BaseGroupAdmin
 from django.contrib.auth.models import User, Group
 
-from unfold.forms import AdminPasswordChangeForm, UserChangeForm, UserCreationForm
-from unfold.admin import ModelAdmin
+from unfold_rtl.forms import AdminPasswordChangeForm, UserChangeForm, UserCreationForm
+from unfold_rtl.admin import ModelAdmin
 
 
 admin.site.unregister(User)

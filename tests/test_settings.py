@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.test.utils import override_settings
 
-from unfold.settings import CONFIG_DEFAULTS, get_config
+from unfold_rtl.settings import CONFIG_DEFAULTS, get_config
 
 
 def test_settings_default_config():

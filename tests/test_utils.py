@@ -2,7 +2,7 @@ from django.utils.translation import override
 from djmoney.models.fields import MoneyField
 from djmoney.money import Money
 
-from unfold.utils import display_for_field
+from unfold_rtl.utils import display_for_field
 
 
 def test_display_for_field_money():
