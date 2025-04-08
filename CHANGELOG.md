@@ -1,4 +1,29 @@
 
+## 0.54.0 (2025-03-31)
+
+- feat: checkbox &amp; radio filters (#1178) ([`9913a45`](https://github.com/unfoldadmin/django-unfold/commit/9913a455f5b8b2d76c069401b6e0c4fa97d82c26))
+- feat: polished action border colors (#1180) ([`975b4a8`](https://github.com/unfoldadmin/django-unfold/commit/975b4a8b5a203f2300e22f24570817da5c7e502d))
+- fix: sections colspan for rows with actions (#1191) ([`5af868e`](https://github.com/unfoldadmin/django-unfold/commit/5af868e29eaeb0f5dd94c34656091dc2ec7168b5))
+- fix: tabular inline stripes / delete link (#1190) ([`eef631a`](https://github.com/unfoldadmin/django-unfold/commit/eef631a400cc3a78effba523cf81f0b7caa72c94))
+- fix: changelist filter adjusted paddings (#1179) ([`dbc330d`](https://github.com/unfoldadmin/django-unfold/commit/dbc330d9d32c907207c42e5cef9627d622056aa9))
+- docs: detailed cohort description + component class (#1192) ([`db36133`](https://github.com/unfoldadmin/django-unfold/commit/db36133cb8535dac713ed89f9fb2ec1759779073))
+- docs: configuring inlines to display in dynamic tabs (#1182) ([`5c2b3a2`](https://github.com/unfoldadmin/django-unfold/commit/5c2b3a258429e3f9eb3d10dd7ce15aa5468e721c))
+
+## 0.53.0 (2025-03-24)
+
+- feat: new InfinitePaginator for large tables (#1169) ([`3ecb2d0`](https://github.com/unfoldadmin/django-unfold/commit/3ecb2d0c2e6a211285c21e86652b0b8417c05e5f))
+- feat: active callback for sidebar navigation (#1165) ([`3d981f3`](https://github.com/unfoldadmin/django-unfold/commit/3d981f33a07c31118f4bfe652ad77d4ab5c4fd89))
+- feat: conditional fields display (#1156) ([`e496d6c`](https://github.com/unfoldadmin/django-unfold/commit/e496d6cd6bb0499aa7133dc21912a2efb4965cbe))
+- fix: truncate long text in action dropdown (#1176) ([`5b45827`](https://github.com/unfoldadmin/django-unfold/commit/5b458270ecd492e13ec43c53fa0a6ee1fa0028d8))
+- fix: site dropdown event propagation (#1175) ([`842fd50`](https://github.com/unfoldadmin/django-unfold/commit/842fd503645c314cd49902d2db70905b17751110))
+- fix: typo on user creation popup form (#1166) ([`a56ecfe`](https://github.com/unfoldadmin/django-unfold/commit/a56ecfe84d8cbde492e94507b92ac081b9b79125))
+- fix: action attrs not being applied to details dropdown actions (#1162) ([`f5ea4d1`](https://github.com/unfoldadmin/django-unfold/commit/f5ea4d1a573abc90b3a69f2d62e5a6796235bf29))
+- fix: display form lines in grid (#1164) ([`cc7f786`](https://github.com/unfoldadmin/django-unfold/commit/cc7f786375e4262d9ee650ffaa6556456d2f0629))
+- fix: changeform dropdown actions permissions (#1163) ([`34fa2ed`](https://github.com/unfoldadmin/django-unfold/commit/34fa2ed94645a984b4bd60768d911c06bbf35129))
+- fix: add support for django-money in display_for_field ([`5cc06c6`](https://github.com/unfoldadmin/django-unfold/commit/5cc06c6b1adab2adc8d73885918fb3322e0d2f90))
+- fix: use the same translation for all &#34;By {filter_title}&#34; (#1146) ([`de5dd99`](https://github.com/unfoldadmin/django-unfold/commit/de5dd99b668a08a43433cd555f9de8e105e571fd))
+- chore: lint only on pull request (#1177) ([`7adee94`](https://github.com/unfoldadmin/django-unfold/commit/7adee94099cc28118bfdc995b633ec34ba911bed))
+
 ## 0.52.0 (2025-03-17)
 
 - feat: compressed fields subtle separator (#1153) ([`56f1678`](https://github.com/unfoldadmin/django-unfold/commit/56f1678716898e06980d8ad51cb6185522080302))

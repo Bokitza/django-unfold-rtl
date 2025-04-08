@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-unfold-rtl"
-version = "1.06"
+version = "1.07"
 description = "Modern Django admin theme for seamless interface development - now with RTL support!"
 license = "MIT"
 readme = "README.md"
@@ -90,7 +90,7 @@ legacy_tox_ini = """
     [tox]
     isolated_build = true
     envlist =
-        python{39,310,311,312,313}-django{42,50,51}
+        python{39,310,311,312,313}-django{42,50,51,52}
 
     [testenv]
     skip_install = true
