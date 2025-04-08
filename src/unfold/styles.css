@@ -84,9 +84,7 @@ select:not([class*="bg-none"]):not([multiple]) {
     border-radius: 6px;
 }
 
-#changelist-actions select:not([class*="bg-none"]):not([multiple]) {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3e%3cpath fill='#ffffff' d='M24 31.4 11.3 18.7l2.85-2.8L24 25.8l9.85-9.85 2.85 2.8Z'/%3e%3c/svg%3e");
-}
+
 
 select:after {
   content: "";
@@ -404,6 +402,10 @@ h3 span:nth-child(3) {
 .select2-container.select2-container--admin-autocomplete
   .select2-results__option--highlighted[aria-selected="true"] {
   @apply text-primary-600 dark:text-primary-500;
+}
+
+.select2-container--admin-autocomplete[dir="rtl"] .select2-selection--multiple .select2-selection__choice{
+  margin-right:4px !important;
 }
 
 .select2-container.select2-container--admin-autocomplete
