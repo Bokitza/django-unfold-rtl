@@ -120,7 +120,7 @@ TEXTAREA_CLASSES = [
 TEXTAREA_EXPANDABLE_CLASSES = [
     "block",
     "field-sizing-content",
-    "!max-w-2xl",
+    "min-h-[38px]",
 ]
 
 SELECT_CLASSES = [
@@ -668,6 +668,20 @@ class UnfoldAdminSelect2Widget(Select):
         attrs["class"] = "unfold-admin-autocomplete admin-autocomplete"
 
         super().__init__(attrs, choices)
+
+    class Media:
+        js = (
+            "admin/js/vendor/jquery/jquery.js",
+            "admin/js/vendor/select2/select2.full.js",
+            "admin/js/jquery.init.js",
+            "unfold/js/select2.init.js",
+        )
+        css = {
+            "screen": (
+                "admin/css/vendor/select2/select2.css",
+                "admin/css/autocomplete.css",
+            ),
+        }
 
 
 class UnfoldAdminSelectMultipleWidget(SelectMultiple):
