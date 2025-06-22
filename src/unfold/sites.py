@@ -4,15 +4,12 @@ from typing import Any, Callable, Optional, Union
 from urllib.parse import parse_qs, urlparse
 
 from django.contrib.admin import AdminSite
-from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.core.validators import EMPTY_VALUES
 from django.http import HttpRequest, HttpResponse
 from django.template.response import TemplateResponse
 from django.urls import URLPattern, path, reverse, reverse_lazy
-from django.utils.decorators import method_decorator
 from django.utils.functional import lazy
 from django.utils.module_loading import import_string
-from django.views.decorators.cache import never_cache
 
 from unfold.dataclasses import DropdownItem, Favicon
 
@@ -82,15 +79,18 @@ class UnfoldAdminSite(AdminSite):
                 "switch": " ".join(SWITCH_CLASSES),
                 "file": " ".join(FILE_CLASSES),
             },
-            "site_title": self._get_config("SITE_TITLE", request) or self.site_title,
-            "site_header": self._get_config("SITE_HEADER", request) or self.site_header,
-            "site_url": self._get_config("SITE_URL", request) or self.site_url,
+            "site_title": self._get_config("SITE_TITLE", request),
+            "site_header": self._get_config("SITE_HEADER", request),
+            "site_url": self._get_config("SITE_URL", request),
             "site_subheader": self._get_config("SITE_SUBHEADER", request),
             "site_dropdown": self._get_site_dropdown_items("SITE_DROPDOWN", request),
             "site_logo": self._get_theme_images("SITE_LOGO", request),
             "site_icon": self._get_theme_images("SITE_ICON", request),
             "site_symbol": self._get_config("SITE_SYMBOL", request),
             "site_favicons": self._get_favicons("SITE_FAVICONS", request),
+            "login_image": self._get_value(
+                get_config(self.settings_name)["LOGIN"].get("image"), request
+            ),
             "show_history": self._get_config("SHOW_HISTORY", request),
             "show_view_on_site": self._get_config("SHOW_VIEW_ON_SITE", request),
             "show_languages": self._get_config("SHOW_LANGUAGES", request),
@@ -102,6 +102,13 @@ class UnfoldAdminSite(AdminSite):
             "environment_title_prefix": self._get_config(
                 "ENVIRONMENT_TITLE_PREFIX", request
             ),
+            "languages_list": self._get_value(
+                self._get_config("LANGUAGES", request).get("navigation"), request
+            ),
+            "languages_action": self._get_value(
+                self._get_config("LANGUAGES", request).get("action"), request
+            ),
+            "account_links": self._get_account_links(request),
             "tab_list": self.get_tabs_list(request),
             "styles": self._get_list("STYLES", request),
             "scripts": self._get_list("SCRIPTS", request),
@@ -191,32 +198,6 @@ class UnfoldAdminSite(AdminSite):
             },
         )
 
-    @method_decorator(never_cache)
-    @login_not_required
-    def login(
-        self, request: HttpRequest, extra_context: Optional[dict[str, Any]] = None
-    ) -> HttpResponse:
-        extra_context = {} if extra_context is None else extra_context
-        image = self._get_value(
-            get_config(self.settings_name)["LOGIN"].get("image"), request
-        )
-
-        redirect_field_name = self._get_value(
-            get_config(self.settings_name)["LOGIN"].get("redirect_after"), request
-        )
-
-        if image not in EMPTY_VALUES:
-            extra_context.update(
-                {
-                    "image": image,
-                }
-            )
-
-        if redirect_field_name not in EMPTY_VALUES:
-            extra_context.update({REDIRECT_FIELD_NAME: redirect_field_name})
-
-        return super().login(request, extra_context)
-
     def password_change(
         self, request: HttpRequest, extra_context: Optional[dict[str, Any]] = None
     ) -> HttpResponse:
@@ -243,58 +224,75 @@ class UnfoldAdminSite(AdminSite):
         results = []
 
         for group in copy.deepcopy(navigation):
-            allowed_items = []
-
-            for item in group["items"]:
-                if "active" in item:
-                    item["active"] = self._get_value(item["active"], request)
-                else:
-                    item["active"] = self._get_is_active(
-                        request, item.get("link_callback") or item["link"]
-                    )
-
-                # Checks if any tab item is active and then marks the sidebar link as active
-                for tab in tabs:
-                    has_primary_link = False
-                    has_tab_link_active = False
-
-                    for tab_item in tab["items"]:
-                        if item["link"] == tab_item["link"]:
-                            has_primary_link = True
-                            continue
-
-                        if self._get_is_active(
-                            request, tab_item.get("link_callback") or tab_item["link"]
-                        ):
-                            has_tab_link_active = True
-                            break
-
-                    if has_primary_link and has_tab_link_active:
-                        item["active"] = True
-
-                if isinstance(item["link"], Callable):
-                    item["link_callback"] = lazy(item["link"])(request)
-
-                # Permission callback
-                item["has_permission"] = self._call_permission_callback(
-                    item.get("permission"), request
-                )
-
-                # Badge callbacks
-                if "badge" in item and isinstance(item["badge"], str):
-                    try:
-                        callback = import_string(item["badge"])
-                        item["badge_callback"] = lazy(callback)(request)
-                    except ImportError:
-                        pass
-
-                allowed_items.append(item)
-
-            group["items"] = allowed_items
-
+            group["items"] = self._get_navigation_items(request, group["items"], tabs)
             results.append(group)
 
         return results
+
+    def _get_navigation_items(
+        self, request: HttpRequest, items: list[dict], tabs: list[dict] = None
+    ) -> list:
+        allowed_items = []
+
+        for item in items:
+            link = item.get("link")
+
+            if "active" in item:
+                item["active"] = self._get_value(item["active"], request)
+            else:
+                item["active"] = self._get_is_active(
+                    request, item.get("link_callback") or link
+                )
+
+            # Checks if any tab item is active and then marks the sidebar link as active
+            if (
+                tabs
+                and (is_active := self._get_is_tab_active(request, tabs, link))
+                and is_active
+            ):
+                item["active"] = True
+
+            # Link callback
+            if isinstance(link, Callable):
+                item["link_callback"] = lazy(link)(request)
+
+            # Permission callback
+            item["has_permission"] = self._call_permission_callback(
+                item.get("permission"), request
+            )
+
+            # Badge callbacks
+            if "badge" in item and isinstance(item["badge"], str):
+                try:
+                    callback = import_string(item["badge"])
+                    item["badge_callback"] = lazy(callback)(request)
+                except ImportError:
+                    pass
+
+            # Process nested items
+            if "items" in item:
+                item["items"] = self._get_navigation_items(request, item["items"])
+
+            allowed_items.append(item)
+
+        return allowed_items
+
+    def _get_account_links(self, request: HttpRequest) -> list[dict[str, Any]]:
+        links = []
+
+        navigation = self._get_value(
+            get_config(self.settings_name)["ACCOUNT"].get("navigation"), request
+        )
+
+        for item in navigation:
+            links.append(
+                {
+                    "title": self._get_value(item["title"], request),
+                    "link": self._get_value(item["link"], request),
+                }
+            )
+
+        return links
 
     def get_tabs_list(self, request: HttpRequest) -> list[dict[str, Any]]:
         tabs = copy.deepcopy(self._get_config("TABS", request))
@@ -381,6 +379,29 @@ class UnfoldAdminSite(AdminSite):
 
         return False
 
+    def _get_is_tab_active(
+        self, request: HttpRequest, tabs: list[dict], link: str
+    ) -> bool:
+        for tab in tabs:
+            has_primary_link = False
+            has_tab_link_active = False
+
+            for tab_item in tab["items"]:
+                if link == tab_item["link"]:
+                    has_primary_link = True
+                    continue
+
+                if self._get_is_active(
+                    request, tab_item.get("link_callback") or tab_item["link"]
+                ):
+                    has_tab_link_active = True
+                    break
+
+            if has_primary_link and has_tab_link_active:
+                return True
+
+        return False
+
     def _get_config(self, key: str, *args) -> Any:
         config = get_config(self.settings_name)
 
@@ -407,7 +428,7 @@ class UnfoldAdminSite(AdminSite):
         colors = self._get_config(key, *args)
 
         def rgb_to_values(value: str) -> str:
-            return " ".join(
+            return ", ".join(
                 list(
                     map(
                         str.strip,
@@ -417,7 +438,7 @@ class UnfoldAdminSite(AdminSite):
             )
 
         def hex_to_values(value: str) -> str:
-            return " ".join(str(item) for item in hex_to_rgb(value))
+            return ", ".join(str(item) for item in hex_to_rgb(value))
 
         for name, weights in colors.items():
             weights = self._get_value(weights, *args)
@@ -428,6 +449,11 @@ class UnfoldAdminSite(AdminSite):
                     colors[name][weight] = hex_to_values(value)
                 elif value.startswith("rgb"):
                     colors[name][weight] = rgb_to_values(value)
+                elif isinstance(value, str) and all(
+                    part.isdigit() for part in value.split()
+                ):
+                    colors[name][weight] = ", ".join(value.split(" "))
+                pass
 
         return colors
 

@@ -4,12 +4,13 @@ from typing import Any, Optional, Union
 
 from django import template
 from django.contrib.admin.helpers import AdminForm, Fieldset
-from django.contrib.admin.views.main import ChangeList
+from django.contrib.admin.views.main import PAGE_VAR, ChangeList
 from django.contrib.admin.widgets import RelatedFieldWidgetWrapper
+from django.core.paginator import Paginator
 from django.db.models import Model
 from django.db.models.options import Options
 from django.forms import BoundField, CheckboxSelectMultiple, Field
-from django.http import HttpRequest
+from django.http import HttpRequest, QueryDict
 from django.template import Context, Library, Node, RequestContext, TemplateSyntaxError
 from django.template.base import NodeList, Parser, Token, token_kwargs
 from django.template.loader import render_to_string
@@ -106,6 +107,20 @@ def has_nav_item_active(items: list) -> bool:
 @register.filter
 def class_name(value: Any) -> str:
     return value.__class__.__name__
+
+
+@register.filter
+def is_list(value: Any) -> str:
+    return isinstance(value, list)
+
+
+@register.filter
+def has_active_item(items: list[dict]) -> bool:
+    for item in items:
+        if "active" in item and item["active"]:
+            return True
+
+    return False
 
 
 @register.filter
@@ -323,6 +338,17 @@ def preserve_changelist_filters(context: Context) -> dict[str, dict[str, str]]:
 
 
 @register.simple_tag(takes_context=True)
+def element_classes(context: Context, key: str) -> str:
+    if key in context.get("element_classes", {}):
+        if isinstance(context["element_classes"][key], (list, tuple)):
+            return " ".join(context["element_classes"][key])
+
+        return context["element_classes"][key]
+
+    return ""
+
+
+@register.simple_tag(takes_context=True)
 def fieldset_rows_classes(context: Context) -> str:
     classes = [
         "aligned",
@@ -334,8 +360,8 @@ def fieldset_rows_classes(context: Context) -> str:
                 "border",
                 "border-base-200",
                 "mb-8",
-                "rounded",
-                "shadow-sm",
+                "rounded-default",
+                "shadow-xs",
                 "dark:border-base-800",
             ]
         )
@@ -384,7 +410,8 @@ def fieldset_line_classes(context: Context) -> str:
         "field-line",
         "flex",
         "flex-col",
-        "flex-grow",
+        "grow",
+        "group",
         "group/line",
         "px-3",
         "py-2.5",
@@ -412,7 +439,7 @@ def fieldset_line_classes(context: Context) -> str:
                 "lg:border-l",
                 "lg:flex-row",
                 "dark:border-base-800",
-                "first:lg:border-l-0",
+                "lg:first:border-l-0",
             ]
         )
 
@@ -423,11 +450,13 @@ def fieldset_line_classes(context: Context) -> str:
 def action_item_classes(context: Context, action: UnfoldAction) -> str:
     classes = [
         "border",
-        "-ml-px",
-        "max-md:first:rounded-t",
-        "max-md:last:rounded-b",
-        "md:first:rounded-l",
-        "md:last:rounded-r",
+        "border-base-200",
+        "max-md:-mt-px",
+        "max-md:first:rounded-t-default",
+        "max-md:last:rounded-b-default",
+        "md:-ml-px",
+        "md:first:rounded-l-default",
+        "md:last:rounded-r-default",
     ]
 
     if "variant" not in action:
@@ -541,3 +570,37 @@ def changeform_condition(field: BoundField) -> BoundField:
         field.field.field.widget.attrs["x-model.fill"] = field.field.name
 
     return field
+
+
+@register.simple_tag
+def infinite_paginator_url(cl, i):
+    return cl.get_query_string({PAGE_VAR: i})
+
+
+@register.simple_tag
+def elided_page_range(
+    paginator: Paginator, number: int
+) -> Optional[list[Union[int, str]]]:
+    if not paginator or not number:
+        return None
+
+    return paginator.get_elided_page_range(number=number)
+
+
+@register.simple_tag(takes_context=True)
+def querystring_params(
+    context: RequestContext, query_key: str, query_value: str
+) -> str:
+    request = context.get("request")
+    result = QueryDict(mutable=True)
+
+    for key, values in request.GET.lists():
+        if key == query_key:
+            continue
+
+        for value in values:
+            result[key] = value
+
+    result[query_key] = query_value
+
+    return result.urlencode()

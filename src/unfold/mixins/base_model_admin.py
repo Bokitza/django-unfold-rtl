@@ -1,6 +1,7 @@
 import copy
-from typing import Optional
+from typing import Any, Optional
 
+from django.contrib.admin import helpers
 from django.contrib.admin.sites import AdminSite
 from django.contrib.admin.widgets import RelatedFieldWidgetWrapper
 from django.db import models
@@ -26,6 +27,19 @@ class BaseModelAdminMixin:
         self.formfield_overrides = overrides
 
         super().__init__(model, admin_site)
+
+    def changeform_view(
+        self,
+        request: HttpRequest,
+        object_id: Optional[str] = None,
+        form_url: str = "",
+        extra_context: Optional[dict[str, Any]] = None,
+    ) -> Any:
+        from unfold.forms import AdminForm, Fieldline
+
+        helpers.AdminForm = AdminForm
+        helpers.Fieldline = Fieldline
+        return super().changeform_view(request, object_id, form_url, extra_context)
 
     def formfield_for_choice_field(
         self, db_field: Field, request: HttpRequest, **kwargs
@@ -90,7 +104,12 @@ class BaseModelAdminMixin:
         self, db_field: Field, request: HttpRequest, **kwargs
     ) -> Optional[Field]:
         if "widget" not in kwargs:
-            kwargs["widget"] = widgets.UnfoldAdminNullBooleanSelectWidget()
+            if db_field.choices:
+                kwargs["widget"] = widgets.UnfoldAdminSelectWidget(
+                    choices=db_field.choices
+                )
+            else:
+                kwargs["widget"] = widgets.UnfoldAdminNullBooleanSelectWidget()
 
         return db_field.formfield(**kwargs)
 

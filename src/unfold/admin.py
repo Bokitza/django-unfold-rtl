@@ -1,22 +1,33 @@
 from functools import update_wrapper
-from typing import Optional
+from typing import Any, Optional
 
 from django import forms
 from django.contrib.admin import ModelAdmin as BaseModelAdmin
 from django.contrib.admin import StackedInline as BaseStackedInline
 from django.contrib.admin import TabularInline as BaseTabularInline
 from django.contrib.admin import display, helpers
+from django.contrib.admin.options import InlineModelAdmin
+from django.contrib.contenttypes.admin import (
+    GenericStackedInline as BaseGenericStackedInline,
+)
+from django.contrib.contenttypes.admin import (
+    GenericTabularInline as BaseGenericTabularInline,
+)
 from django.db.models import BLANK_CHOICE_DASH, Model
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect
+from django.template.response import TemplateResponse
 from django.urls import URLPattern, path
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 from django.views import View
 
 from unfold.checks import UnfoldModelAdminChecks
-from unfold.fields import UnfoldAdminField, UnfoldAdminReadonlyField
-from unfold.forms import ActionForm
+from unfold.forms import (
+    ActionForm,
+    PaginationGenericInlineFormSet,
+    PaginationInlineFormSet,
+)
 from unfold.mixins import ActionModelAdminMixin, BaseModelAdminMixin
 from unfold.overrides import FORMFIELD_OVERRIDES_INLINE
 from unfold.typing import FieldsetsType
@@ -30,10 +41,6 @@ checkbox = UnfoldBooleanWidget(
     },
     lambda value: False,
 )
-
-helpers.AdminField = UnfoldAdminField
-
-helpers.AdminReadonlyField = UnfoldAdminReadonlyField
 
 
 class ModelAdmin(BaseModelAdminMixin, ActionModelAdminMixin, BaseModelAdmin):
@@ -56,12 +63,12 @@ class ModelAdmin(BaseModelAdminMixin, ActionModelAdminMixin, BaseModelAdmin):
     warn_unsaved_form = False
     checks_class = UnfoldModelAdminChecks
 
-    @property
-    def media(self):
-        media = super().media
+    def changelist_view(
+        self, request: HttpRequest, extra_context: Optional[dict[str, str]] = None
+    ) -> TemplateResponse:
         additional_media = forms.Media()
 
-        for filter in self.list_filter:
+        for filter in self.get_list_filter(request):
             if (
                 isinstance(filter, (tuple, list))
                 and hasattr(filter[1], "form_class")
@@ -71,7 +78,16 @@ class ModelAdmin(BaseModelAdminMixin, ActionModelAdminMixin, BaseModelAdmin):
             elif hasattr(filter, "form_class") and hasattr(filter.form_class, "Media"):
                 additional_media += forms.Media(filter.form_class.Media)
 
-        return media + additional_media
+        if not extra_context:
+            extra_context = {}
+
+        extra_context.update(
+            {
+                "media": self.media + additional_media,
+            }
+        )
+
+        return super().changelist_view(request, extra_context)
 
     def get_fieldsets(self, request: HttpRequest, obj=None) -> FieldsetsType:
         if not obj and self.add_fieldsets:
@@ -172,16 +188,42 @@ class ModelAdmin(BaseModelAdminMixin, ActionModelAdminMixin, BaseModelAdmin):
     def get_changelist(self, request, **kwargs):
         return ChangeList
 
+    def get_formset_kwargs(
+        self, request: HttpRequest, obj: Model, inline: InlineModelAdmin, prefix: str
+    ) -> dict[str, Any]:
+        formset_kwargs = super().get_formset_kwargs(request, obj, inline, prefix)
+        formset_kwargs["request"] = request
 
-class TabularInline(BaseModelAdminMixin, BaseTabularInline):
+        if hasattr(inline, "per_page"):
+            formset_kwargs["per_page"] = inline.per_page
+
+        return formset_kwargs
+
+
+class BaseInlineMixin:
     formfield_overrides = FORMFIELD_OVERRIDES_INLINE
     readonly_preprocess_fields = {}
     ordering_field = None
+    per_page = None
     hide_ordering_field = False
+    collapsible = False
 
 
-class StackedInline(BaseModelAdminMixin, BaseStackedInline):
-    formfield_overrides = FORMFIELD_OVERRIDES_INLINE
-    readonly_preprocess_fields = {}
-    ordering_field = None
-    hide_ordering_field = False
+class TabularInline(BaseInlineMixin, BaseModelAdminMixin, BaseTabularInline):
+    formset = PaginationInlineFormSet
+
+
+class StackedInline(BaseInlineMixin, BaseModelAdminMixin, BaseStackedInline):
+    formset = PaginationInlineFormSet
+
+
+class GenericStackedInline(
+    BaseInlineMixin, BaseModelAdminMixin, BaseGenericStackedInline
+):
+    formset = PaginationGenericInlineFormSet
+
+
+class GenericTabularInline(
+    BaseInlineMixin, BaseModelAdminMixin, BaseGenericTabularInline
+):
+    formset = PaginationGenericInlineFormSet
