@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-unfold-rtl"
-version = "1.07"
+version = "1.09"
 description = "Modern Django admin theme for seamless interface development - now with RTL support!"
 license = "MIT"
 readme = "README.md"
