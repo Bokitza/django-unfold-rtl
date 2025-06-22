@@ -33,7 +33,7 @@ Let's explore a more sophisticated example that demonstrates how multiple compon
             {% component "unfold/components/navigation.html" with items=navigation %}
             {% endcomponent %}
 
-            {% component "unfold/components/navigation.html" with class="ml-auto" items=filters %}
+            {% component "unfold/components/navigation.html" with class="ms-auto" items=filters %}
             {% endcomponent %}
         </div>
 

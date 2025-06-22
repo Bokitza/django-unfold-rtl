@@ -14,7 +14,7 @@
         <div class="bg-base-50 flex my-4 items-center p-3 rounded-default dark:bg-base-800">
             {% if pagination_required %}
                 {% for i in page_range %}
-                    <span class="pr-4">
+                    <span class="ps-4">
                         {% if i == page_obj.paginator.ELLIPSIS %}
                             {{ page_obj.paginator.ELLIPSIS }}
                         {% elif i == page_obj.number %}

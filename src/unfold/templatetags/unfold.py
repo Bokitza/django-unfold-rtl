@@ -454,7 +454,7 @@ def action_item_classes(context: Context, action: UnfoldAction) -> str:
         "max-md:-mt-px",
         "max-md:first:rounded-t-default",
         "max-md:last:rounded-b-default",
-        "md:-ml-px",
+        "md:-ms-px",
         "md:first:rounded-l-default",
         "md:last:rounded-r-default",
     ]

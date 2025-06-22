@@ -42,7 +42,7 @@
 
                                 {% if header.sortable %}
                                     {% if header.sort_priority > 0 %}
-                                        <div class="sortoptions flex items-center ml-2">
+                                        <div class="sortoptions flex items-center ms-2">
                                             <a href="{{ header.url_toggle }}" class="flex items-center leading-none text-base-400 hover:text-base-500 dark:text-base-500 dark:hover:text-base-400 toggle {% if header.ascending %}ascending{% else %}descending{% endif %}" title="{% translate "Toggle sorting" %}">
                                                 {% if header.ascending %}
                                                     <span class="block material-symbols-outlined">arrow_circle_down</span>
@@ -51,13 +51,13 @@
                                                 {% endif %}
                                             </a>
 
-                                            <a class="sortremove flex items-center leading-none ml-1 text-base-400 dark:text-base-500 transition-all hover:text-red-700 dark:hover:text-red-500" href="{{ header.url_remove }}" title="{% translate "Remove from sorting" %}">
+                                            <a class="sortremove flex items-center leading-none ms-1 text-base-400 dark:text-base-500 transition-all hover:text-red-700 dark:hover:text-red-500" href="{{ header.url_remove }}" title="{% translate "Remove from sorting" %}">
                                                 <span class="block material-symbols-outlined">cancel</span>
                                             </a>
                                         </div>
 
                                         {% if num_sorted_fields > 1 %}
-                                            <span class="sortpriority font-medium ml-2 text-xs" title="{% blocktranslate with priority_number=header.sort_priority %}Sorting priority: {{ priority_number }}{% endblocktranslate %}">
+                                            <span class="sortpriority font-medium ms-2 text-xs" title="{% blocktranslate with priority_number=header.sort_priority %}Sorting priority: {{ priority_number }}{% endblocktranslate %}">
                                                 {{ header.sort_priority }}
                                             </span>
                                         {% endif %}
@@ -81,7 +81,7 @@
 
                     <tr class="{% cycle '' 'bg-base-50 dark:bg-white/[.02]' %} block border border-base-200 mb-3 rounded-default shadow-xs lg:table-row lg:border-none lg:mb-0 lg:shadow-none dark:border-base-800">
                         {% if cl.model_admin.list_sections|length > 0 %}
-                            <td class="align-middle cursor-pointer flex border-b border-base-200 font-normal px-2.5 py-2 relative text-right before:font-semibold before:text-font-important-light before:block before:capitalize before:content-[attr(data-label)] before:ms-0 lg:before:hidden lg:border-b-0 lg:border-t lg:pl-3 lg:pr-0 lg:py-3 lg:table-cell dark:border-base-800 dark:lg:border-base-800 dark:before:text-font-important-dark lg:w-px"
+                            <td class="align-middle cursor-pointer flex border-b border-base-200 font-normal px-2.5 py-2 relative text-right before:font-semibold before:text-font-important-light before:block before:capitalize before:content-[attr(data-label)] before:ms-0 lg:before:hidden lg:border-b-0 lg:border-t lg:ps-3 lg:ps-0 lg:py-3 lg:table-cell dark:border-base-800 dark:lg:border-base-800 dark:before:text-font-important-dark lg:w-px"
                                 data-label="{% trans "Expand row" %}"
                                 x-on:click="rowOpen = !rowOpen">
                                 <div class="absolute bg-primary-600 -bottom-px hidden left-0 top-0 w-0.5 z-10 lg:block" x-show="rowOpen"></div>

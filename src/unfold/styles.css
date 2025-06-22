@@ -109,7 +109,7 @@
 }
 
 .errorlist {
-  @apply *:before:align-bottom *:before:content-['warning'] *:before:material-symbols-outlined *:before:mr-1;
+  @apply *:before:align-bottom *:before:content-['warning'] *:before:material-symbols-outlined *:before:me-1;
 }
 
 [x-cloak] {
@@ -204,7 +204,7 @@ table tr.selected th {
 }
 
 .timezonewarning:hover:before {
-  @apply hidden mr-2;
+  @apply hidden me-2;
 }
 
 .timezonewarning:before {
@@ -380,7 +380,7 @@ td .inline-deletelink {
 }
 
 .select2-container.select2-container--admin-autocomplete .select2-selection--single .select2-selection__arrow {
-  @apply flex h-9 items-center mr-2 -mt-px;
+  @apply flex h-9 items-center me-2 -mt-px;
   @apply after:left-0 after:leading-none after:m-0 after:material-symbols-outlined after:text-base-400 after:text-lg dark:after:text-base-500;
 }
 
@@ -397,7 +397,7 @@ td .inline-deletelink {
 }
 
 .select2-container.select2-container--admin-autocomplete .select2-search--dropdown .select2-search__field {
-  @apply bg-base-100 border-0 border-base-200 border-solid grow font-medium mx-0 outline-hidden px-3 py-2 pl-9 rounded-default text-font-default-light text-sm w-full dark:bg-base-800 dark:border-base-800 dark:text-font-default-dark;
+  @apply bg-base-100 border-0 border-base-200 border-solid grow font-medium mx-0 outline-hidden px-3 py-2 ps-9 rounded-default text-font-default-light text-sm w-full dark:bg-base-800 dark:border-base-800 dark:text-font-default-dark;
 }
 
 .select2-container .select2-results__options {
@@ -420,23 +420,23 @@ td .inline-deletelink {
   @apply block mb-0.5 mx-1 px-2 py-2 rounded-default text-font-default-light transition-all hover:bg-base-100 hover:text-base-700 dark:hover:bg-base-800 dark:hover:text-base-200 dark:text-font-default-dark last:mb-0;
 }
 .select2-container.select2-container--admin-autocomplete .select2-results__option[aria-selected="true"] {
-  @apply text-primary-600 dark:text-primary-500 flex items-center text-primary-600 dark:text-primary-500 after:content-['check'] after:material-symbols-outlined after:ml-auto;
+  @apply text-primary-600 dark:text-primary-500 flex items-center text-primary-600 dark:text-primary-500 after:content-['check'] after:material-symbols-outlined after:ms-auto;
 }
 
 .select2-container.select2-container--admin-autocomplete .select2-selection--multiple .select2-selection__clear {
-  @apply m-0 mr-3 top-0;
+  @apply m-0 me-3 top-0;
 }
 
 .select2-container.select2-container--admin-autocomplete .select2-selection--multiple .select2-selection__rendered {
-  @apply pl-1 pr-6 py-0 pt-1;
+  @apply ps-1 ps-6 py-0 pt-1;
 }
 
 .select2-container.select2-container--admin-autocomplete .select2-selection--single .select2-selection__rendered {
-  @apply pr-8;
+  @apply ps-8;
 }
 
 .select2-container--admin-autocomplete .select2-selection--multiple li.select2-selection__choice {
-  @apply bg-base-100 block font-medium h-7 leading-7 m-0 mr-1 mb-1 px-2 shadow-inner text-sm text-base-600 hover:text-base-700 truncate dark:bg-base-800 dark:text-base-300 dark:hover:text-base-200;
+  @apply bg-base-100 block font-medium h-7 leading-7 m-0 me-1 mb-1 px-2 shadow-inner text-sm text-base-600 hover:text-base-700 truncate dark:bg-base-800 dark:text-base-300 dark:hover:text-base-200;
 }
 
 .select2-container--admin-autocomplete .select2-selection--multiple li.select2-selection__choice .select2-selection__choice__remove {
@@ -451,7 +451,7 @@ td .inline-deletelink {
 }
 
 .select2-container--admin-autocomplete .select2-selection--multiple li.select2-search--inline .select2-search__field {
-  @apply m-0 h-7 ml-2 text-base-500 text-sm;
+  @apply m-0 h-7 ms-2 text-base-500 text-sm;
 }
 
 /*******************************************************
@@ -536,7 +536,7 @@ fieldset details[open] > summary:after {
 }
 
 .calendarnav-previous {
-  @apply absolute block ml-2 mt-2 left-0 text-[0px] top-0;
+  @apply absolute block ms-2 mt-2 left-0 text-[0px] top-0;
 }
 
 .calendarnav-next:after,
@@ -553,7 +553,7 @@ fieldset details[open] > summary:after {
 }
 
 .calendarnav-next {
-  @apply absolute block mr-2 mt-2 right-0 text-[0px] top-0;
+  @apply absolute block me-2 mt-2 right-0 text-[0px] top-0;
 }
 
 .calendarnav-next:after {
@@ -645,7 +645,7 @@ trix-toolbar[id^="trix-toolbar-"] {
 }
 
 .ui-tabs.ui-widget .ui-tabs-nav {
-  @apply bg-base-100 border-0 flex gap-2 m-0 ml-3 mb-0 mt-3 mr-auto p-1 rounded-default text-sm dark:bg-white/[.04] after:hidden;
+  @apply bg-base-100 border-0 flex gap-2 m-0 ms-3 mb-0 mt-3 me-auto p-1 rounded-default text-sm dark:bg-white/[.04] after:hidden;
 }
 
 .ui-tabs.ui-widget .ui-tabs-nav li {

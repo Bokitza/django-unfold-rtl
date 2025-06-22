@@ -26,7 +26,7 @@
                             {% endif %}
 
                             <td class="{% if not forloop.last %}border-b border-base-100 dark:border-base-800{% endif %} p-3 text-right">
-                                <div class="flex flex-row items-center ml-auto gap-4 justify-end">
+                                <div class="flex flex-row items-center ms-auto gap-4 justify-end">
                                     {% if model.add_url %}
                                         <a href="{{ model.add_url }}" class="addlink block leading-none text-base-400 transition-colors dark:text-base-500 " title="{% translate 'Add' %}">
                                             <span class="material-symbols-outlined">add</span>

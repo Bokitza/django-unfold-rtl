@@ -30,7 +30,7 @@
             <tbody>
                 {% for group, group_perms in groups_perms.items %}
                     <tr class="block border mb-3 rounded-default shadow-xs lg:table-row lg:border-none lg:mb-0 lg:shadow-none dark:border-base-800">
-                        <th class="align-middle flex border-t border-base-200 font-normal px-3 py-2 text-left  before:flex before:capitalize before:content-[attr(data-label)] before:items-center before:mr-auto first:border-t-0  lg:before:hidden lg:first:border-t lg:py-3 lg:table-cell dark:border-base-800" data-label="{% trans "User" %}">
+                        <th class="align-middle flex border-t border-base-200 font-normal px-3 py-2 text-left  before:flex before:capitalize before:content-[attr(data-label)] before:items-center before:me-auto first:border-t-0  lg:before:hidden lg:first:border-t lg:py-3 lg:table-cell dark:border-base-800" data-label="{% trans "User" %}">
                             <span>
                                 {{ group }}
                             </span>
@@ -63,7 +63,7 @@
         {% endfor %}
 
         <div class="bg-base-50 border-t border-base-200 flex flex-row -m-3 p-3 dark:bg-white/[.02] dark:border-base-800">
-            <div class="ml-auto">
+            <div class="ms-auto">
                 {% trans "Manage group" as title %}
                 {% include "unfold/helpers/submit.html" with title=title name="submit_manage_group" %}
             </div>
